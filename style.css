@@ -11,7 +11,7 @@ body {
     justify-content: center;
     align-items: center;
 
-    background-color: #191919;
+    background-color: #151515;
 }
 
 main {
@@ -23,8 +23,9 @@ main {
 
     display: flex;
 
-    border: 1px solid #515151;
-    border-radius: 5px;
+    background-color: #212121;
+
+    border-radius: 8px;
 }
 
 main .chats {
@@ -38,7 +39,9 @@ main .chats .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 30px;
+    padding: 20px 30px;
+
+    border-bottom: 1px solid #515151;
 }
 
 main .chats .navbar h2 {
