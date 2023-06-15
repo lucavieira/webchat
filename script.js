@@ -21,17 +21,30 @@ addButton.addEventListener('click', () => {
         genre = prompt('Are you man or woman?')
     }
 
-    let name = prompt("What's your name?")
-
     perfilImage.src = `assets/images/user-${genre}.png`
     perfilImage.classList.add("perfil-image")
+
+    let fieldInformations = document.createElement('div')
+    fieldInformations.classList.add('informations')
+
+    let name = prompt("What's your name?")
+
+    let number = prompt("What's your phone number?")
+
 
     let contactName = document.createElement('h3')
     contactName.classList.add('contact-name')
     contactName.innerHTML = name
 
+    let contactNumber = document.createElement('span')
+    contactNumber.classList.add('contact-number')
+    contactNumber.innerHTML = number
+
+    fieldInformations.appendChild(contactName)
+    fieldInformations.appendChild(contactNumber)
+
     newContact.appendChild(perfilImage)
-    newContact.appendChild(contactName)
+    newContact.appendChild(fieldInformations)
 
     newContact.addEventListener('click', fieldChat)
 
