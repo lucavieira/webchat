@@ -9,48 +9,48 @@ for(let index = 1; index <= localStorage.length; index++) {
 }
 
 addButton.addEventListener('click', () => {
-    let newContact = document.createElement('div')
-    newContact.classList.add('contact')
-    newContact.id = localStorage.length
-
-    let perfilImage = document.createElement('img')
-
-    let genre = prompt('Are you man or woman?').toLowerCase()
-    
-    while(genre != "man" && genre != "woman") {
-        genre = prompt('Are you man or woman?')
-    }
-
-    perfilImage.src = `assets/images/user-${genre}.png`
-    perfilImage.classList.add("perfil-image")
-
-    let fieldInformations = document.createElement('div')
-    fieldInformations.classList.add('informations')
-
     let name = prompt("What's your name?")
-
     let number = prompt("What's your phone number?")
 
+    let idContactNumber = document.getElementById(number)
 
-    let contactName = document.createElement('h3')
-    contactName.classList.add('contact-name')
-    contactName.innerHTML = name
+    if(idContactNumber == null || number != idContactNumber.id) {
+        let newContact = document.createElement('div')
+        newContact.classList.add('contact')
+        newContact.id = localStorage.length
+    
+        let perfilImage = document.createElement('img')
+    
+        perfilImage.src = `assets/images/user.png`
+        perfilImage.classList.add("perfil-image")
+    
+        let fieldInformations = document.createElement('div')
+        fieldInformations.classList.add('informations')
+    
+        let contactName = document.createElement('h3')
+        contactName.classList.add('contact-name')
+        contactName.innerHTML = name
+    
+        let contactNumber = document.createElement('span')
+        contactNumber.classList.add('contact-number')
+        contactNumber.id = number
+        contactNumber.innerHTML = number
+    
+        fieldInformations.appendChild(contactName)
+        fieldInformations.appendChild(contactNumber)
+    
+        newContact.appendChild(perfilImage)
+        newContact.appendChild(fieldInformations)
+    
+        newContact.addEventListener('click', fieldChat)
+    
+        localStorage.setItem(`contact-${localStorage.length + 1}`, newContact.outerHTML)
+    
+        fieldContacts.appendChild(newContact)
+    } else {
+        alert('Este número ja existe')
+    }
 
-    let contactNumber = document.createElement('span')
-    contactNumber.classList.add('contact-number')
-    contactNumber.innerHTML = number
-
-    fieldInformations.appendChild(contactName)
-    fieldInformations.appendChild(contactNumber)
-
-    newContact.appendChild(perfilImage)
-    newContact.appendChild(fieldInformations)
-
-    newContact.addEventListener('click', fieldChat)
-
-    localStorage.setItem(`contact-${localStorage.length + 1}`, newContact.outerHTML)
-
-    fieldContacts.appendChild(newContact)
 })
 
 const fieldChat = () => {
