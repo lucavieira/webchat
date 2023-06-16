@@ -35,6 +35,14 @@ main .chats {
     border-right: 1px solid #515151;
 }
 
+main .containerContact {
+    width: 90%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+}
+
 main .chats .navbar {
     display: flex;
     align-items: center;

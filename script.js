@@ -1,6 +1,8 @@
 let addButton = document.getElementById("addButton")
 let fieldContacts = document.getElementById("fieldContacts")
 let contacts = document.getElementsByClassName('contact')
+let actionDelete = document.getElementsByClassName('delete')
+// let actionEdit = document.getElementsByClassName('edit')
 
 for(let index = 1; index <= localStorage.length; index++) {
     let contact = localStorage.getItem(`contact-${index}`)
@@ -15,6 +17,9 @@ addButton.addEventListener('click', () => {
     let idContactNumber = document.getElementById(number)
 
     if(idContactNumber == null || number != idContactNumber.id) {
+        let contactContainer = document.createElement('div')
+        contactContainer.classList.add('containerContact')
+
         let newContact = document.createElement('div')
         newContact.classList.add('contact')
         newContact.id = localStorage.length
@@ -56,13 +61,16 @@ addButton.addEventListener('click', () => {
     
         newContact.appendChild(perfilImage)
         newContact.appendChild(fieldInformations)
-        newContact.appendChild(fieldActions)
     
         newContact.addEventListener('click', fieldChat)
     
-        localStorage.setItem(`contact-${localStorage.length + 1}`, newContact.outerHTML)
-    
-        fieldContacts.appendChild(newContact)
+        
+        contactContainer.appendChild(newContact)
+        contactContainer.appendChild(fieldActions)
+        
+        localStorage.setItem(`contact-${localStorage.length + 1}`, contactContainer.outerHTML)
+
+        fieldContacts.appendChild(contactContainer)
     } else {
         alert('Este número ja existe')
     }
@@ -87,3 +95,11 @@ const editContact = () => {
 for(let contact of contacts) {
     contact.addEventListener('click', fieldChat)
 }
+
+for(let action of actionDelete) {
+    action.addEventListener('click', deleteContact)
+}
+
+// for(let action of actionEdit) {
+//     action.addEventListener('click', editContact)
+// }
