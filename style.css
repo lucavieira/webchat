@@ -74,10 +74,11 @@ main .contact {
     margin: 5px;
 
     display: flex;
+    flex-grow: 4;
     align-items: center;
     gap: 20px;
 
-    padding-left: 15px;
+    padding: 0px 15px;
 
     cursor: pointer;
 
@@ -105,6 +106,27 @@ main .contact-number {
     letter-spacing: 1px;
 
     color: #c1c1c1;
+}
+
+main .informations {
+    flex-grow: 2;
+}
+
+main .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+main .actions .delete {
+    border: none;
+    background: no-repeat center / contain url("./assets/images/delete-icon.png");
+    background-color: transparent;
+}
+
+main .actions .delete, .edit {
+    width: 15px;
+    height: 15px;
 }
 
 main .field-chat {

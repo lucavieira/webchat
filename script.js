@@ -35,12 +35,28 @@ addButton.addEventListener('click', () => {
         contactNumber.classList.add('contact-number')
         contactNumber.id = number
         contactNumber.innerHTML = number
+
+        let fieldActions = document.createElement('div')
+        fieldActions.classList.add('actions')
+
+        let deleteButton = document.createElement('button')
+        deleteButton.classList.add('delete')
+        deleteButton.addEventListener('click', () => deleteContact(number))
+
+        let editButton = document.createElement('button')
+        editButton.src = "./assets/images/edit-icon.png"
+        editButton.classList.add('edit')
+        editButton.addEventListener('click', editContact)
+
+        fieldActions.appendChild(deleteButton)
+        fieldActions.appendChild(editButton)
     
         fieldInformations.appendChild(contactName)
         fieldInformations.appendChild(contactNumber)
     
         newContact.appendChild(perfilImage)
         newContact.appendChild(fieldInformations)
+        newContact.appendChild(fieldActions)
     
         newContact.addEventListener('click', fieldChat)
     
@@ -55,6 +71,17 @@ addButton.addEventListener('click', () => {
 
 const fieldChat = () => {
     alert('OK')
+}
+
+const deleteContact = (idNumber) => {
+    let contact = document.getElementById(idNumber)
+    let contactErased = localStorage.key(contact)
+    localStorage.removeItem(contactErased)
+    location.reload()
+}
+
+const editContact = () => {
+    alert('edit')
 }
 
 for(let contact of contacts) {
