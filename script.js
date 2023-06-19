@@ -2,12 +2,16 @@ let addButton = document.getElementById("addButton")
 let fieldContacts = document.getElementById("fieldContacts")
 let contacts = document.getElementsByClassName('contact')
 let actionDelete = document.getElementsByClassName('delete')
-// let actionEdit = document.getElementsByClassName('edit')
+let actionEdit = document.getElementsByClassName('edit')
 
-for(let index = 1; index <= localStorage.length; index++) {
-    let contact = localStorage.getItem(`contact-${index}`)
+let listContacts = []
 
-    fieldContacts.insertAdjacentHTML('beforeend', contact)
+for(let index = 0; index <= localStorage.length; index++) {
+    let key = localStorage.key(index)
+    if(key != null) {
+        let contact = localStorage.getItem(key)
+        fieldContacts.insertAdjacentHTML('beforeend', contact)
+    }
 }
 
 addButton.addEventListener('click', () => {
@@ -19,10 +23,10 @@ addButton.addEventListener('click', () => {
     if(idContactNumber == null || number != idContactNumber.id) {
         let contactContainer = document.createElement('div')
         contactContainer.classList.add('containerContact')
+        contactContainer.id = `contact-${number}`
 
         let newContact = document.createElement('div')
         newContact.classList.add('contact')
-        newContact.id = localStorage.length
     
         let perfilImage = document.createElement('img')
     
@@ -38,7 +42,6 @@ addButton.addEventListener('click', () => {
     
         let contactNumber = document.createElement('span')
         contactNumber.classList.add('contact-number')
-        contactNumber.id = number
         contactNumber.innerHTML = number
 
         let fieldActions = document.createElement('div')
@@ -46,12 +49,9 @@ addButton.addEventListener('click', () => {
 
         let deleteButton = document.createElement('button')
         deleteButton.classList.add('delete')
-        deleteButton.addEventListener('click', () => deleteContact(number))
 
         let editButton = document.createElement('button')
-        editButton.src = "./assets/images/edit-icon.png"
         editButton.classList.add('edit')
-        editButton.addEventListener('click', editContact)
 
         fieldActions.appendChild(deleteButton)
         fieldActions.appendChild(editButton)
@@ -61,16 +61,16 @@ addButton.addEventListener('click', () => {
     
         newContact.appendChild(perfilImage)
         newContact.appendChild(fieldInformations)
-    
-        newContact.addEventListener('click', fieldChat)
-    
         
         contactContainer.appendChild(newContact)
         contactContainer.appendChild(fieldActions)
-        
-        localStorage.setItem(`contact-${localStorage.length + 1}`, contactContainer.outerHTML)
+
+        localStorage.setItem(`contact-${number}`, contactContainer.outerHTML)
 
         fieldContacts.appendChild(contactContainer)
+
+        location.reload()
+
     } else {
         alert('Este número ja existe')
     }
@@ -82,9 +82,7 @@ const fieldChat = () => {
 }
 
 const deleteContact = (idNumber) => {
-    let contact = document.getElementById(idNumber)
-    let contactErased = localStorage.key(contact)
-    localStorage.removeItem(contactErased)
+    localStorage.removeItem(idNumber)
     location.reload()
 }
 
@@ -97,9 +95,9 @@ for(let contact of contacts) {
 }
 
 for(let action of actionDelete) {
-    action.addEventListener('click', deleteContact)
+    action.addEventListener('click', () => deleteContact(action.parentElement.parentElement.id))
 }
 
-// for(let action of actionEdit) {
-//     action.addEventListener('click', editContact)
-// }
+for(let action of actionEdit) {
+    action.addEventListener('click', editContact)
+}
