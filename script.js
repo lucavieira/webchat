@@ -7,6 +7,7 @@ let containerData = document.getElementById('dataContainer')
 let inputName = document.querySelector("#formName")
 let inputNumber = document.getElementById('formNumber')
 let saveButton = document.getElementById('saveButton')
+let closeButton = document.querySelector('#closeButton')
 
 for(let index = 0; index <= localStorage.length; index++) {
     let key = localStorage.key(index)
@@ -19,6 +20,11 @@ for(let index = 0; index <= localStorage.length; index++) {
 addButton.addEventListener('click', () => {
     containerData.style.display = 'flex'
     setData()
+})
+
+closeButton.addEventListener('click', () => {
+    containerData.style.display = 'none'
+    location.reload()
 })
 
 function setData() {

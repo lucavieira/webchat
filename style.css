@@ -55,6 +55,7 @@ main .containerData .containerForm {
     height: 50%;
 
     background-color: #265956;
+    box-shadow: 0px 0px 70px 10px rgb(0, 0, 0, .2);
 
     border-radius: 8px;
 
@@ -63,6 +64,16 @@ main .containerData .containerForm {
     align-items: center;
     justify-content: center;
     gap: 20px;
+}
+
+main .containerData img {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    margin: 20px 20px 0px 0px;
+
+    cursor: pointer;
 }
 
 main .containerData .containerForm input, 
