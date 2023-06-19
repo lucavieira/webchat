@@ -15,20 +15,86 @@ body {
 }
 
 main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main, main .containerChat {
     max-width: 800px;
     max-height: 500px;
 
     width: 100%;
     height: 100%;
+}
 
-    display: flex;
-
+main .containerChat {
     background-color: #212121;
 
     border-radius: 8px;
 }
 
-main .chats {
+main .containerData {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    
+    max-width: 100vw;
+    max-height: 100vh;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: #00000070;
+
+    position: absolute;
+}
+
+main .containerData .containerForm {
+    width: 50%;
+    height: 50%;
+
+    background-color: #265956;
+
+    border-radius: 8px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+main .containerData .containerForm input, 
+main .containerData .containerForm button {
+    width: 300px;
+    height: 40px;
+
+    border: none;
+    border-radius: 5px;
+
+    padding-left: 10px;
+}
+
+main .containerData .containerForm input:focus-visible {
+    outline: none;
+}
+
+main .containerData .containerForm button {
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all .2s ease-in-out;
+}
+
+main .containerData .containerForm button:hover {
+    color: #fff;
+    background-color: #181818;
+}
+
+main .containerChat .chats {
     width: 40%;
     height: 100%;
 

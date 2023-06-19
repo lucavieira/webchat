@@ -4,7 +4,7 @@ let contacts = document.getElementsByClassName('contact')
 let actionDelete = document.getElementsByClassName('delete')
 let actionEdit = document.getElementsByClassName('edit')
 
-let listContacts = []
+let data = {}
 
 for(let index = 0; index <= localStorage.length; index++) {
     let key = localStorage.key(index)
@@ -15,67 +15,87 @@ for(let index = 0; index <= localStorage.length; index++) {
 }
 
 addButton.addEventListener('click', () => {
-    let name = prompt("What's your name?")
-    let number = prompt("What's your phone number?")
+    let containerData = document.getElementById('dataContainer')
+    containerData.style.display = 'flex'
+    setData()
+})
 
-    let idContactNumber = document.getElementById(number)
+function setData() {
+    let inputName = document.querySelector("#formName")
+    let inputNumber = document.getElementById('formNumber')
+    let saveButton = document.getElementById('saveButton')
 
-    if(idContactNumber == null || number != idContactNumber.id) {
-        let contactContainer = document.createElement('div')
-        contactContainer.classList.add('containerContact')
-        contactContainer.id = `contact-${number}`
+    saveButton.addEventListener('click', () => saveContact(inputName.value, inputNumber.value))
+}
 
-        let newContact = document.createElement('div')
-        newContact.classList.add('contact')
-    
-        let perfilImage = document.createElement('img')
-    
-        perfilImage.src = `assets/images/user.png`
-        perfilImage.classList.add("perfil-image")
-    
-        let fieldInformations = document.createElement('div')
-        fieldInformations.classList.add('informations')
-    
-        let contactName = document.createElement('h3')
-        contactName.classList.add('contact-name')
-        contactName.innerHTML = name
-    
-        let contactNumber = document.createElement('span')
-        contactNumber.classList.add('contact-number')
-        contactNumber.innerHTML = number
+function saveContact(name, number) {
+    let erros = 0
 
-        let fieldActions = document.createElement('div')
-        fieldActions.classList.add('actions')
-
-        let deleteButton = document.createElement('button')
-        deleteButton.classList.add('delete')
-
-        let editButton = document.createElement('button')
-        editButton.classList.add('edit')
-
-        fieldActions.appendChild(deleteButton)
-        fieldActions.appendChild(editButton)
-    
-        fieldInformations.appendChild(contactName)
-        fieldInformations.appendChild(contactNumber)
-    
-        newContact.appendChild(perfilImage)
-        newContact.appendChild(fieldInformations)
-        
-        contactContainer.appendChild(newContact)
-        contactContainer.appendChild(fieldActions)
-
-        localStorage.setItem(`contact-${number}`, contactContainer.outerHTML)
-
-        fieldContacts.appendChild(contactContainer)
-
-        location.reload()
-
-    } else {
-        alert('Este número ja existe')
+    if(number.length < 11 || number.length > 11 || isNaN(number)) {
+        alert('Número Inválido')
+        erros++
     }
 
-})
+    if(erros === 0) {
+        let idContactNumber = document.getElementById(number)
+
+        if(idContactNumber == null || number != idContactNumber.id) {
+            let contactContainer = document.createElement('div')
+            contactContainer.classList.add('containerContact')
+            contactContainer.id = `contact-${number}`
+    
+            let newContact = document.createElement('div')
+            newContact.classList.add('contact')
+        
+            let perfilImage = document.createElement('img')
+        
+            perfilImage.src = `assets/images/user.png`
+            perfilImage.classList.add("perfil-image")
+        
+            let fieldInformations = document.createElement('div')
+            fieldInformations.classList.add('informations')
+        
+            let contactName = document.createElement('h3')
+            contactName.classList.add('contact-name')
+            contactName.innerHTML = name
+        
+            let contactNumber = document.createElement('span')
+            contactNumber.classList.add('contact-number')
+            contactNumber.id = number
+            contactNumber.innerHTML = number
+    
+            let fieldActions = document.createElement('div')
+            fieldActions.classList.add('actions')
+    
+            let deleteButton = document.createElement('button')
+            deleteButton.classList.add('delete')
+    
+            let editButton = document.createElement('button')
+            editButton.classList.add('edit')
+    
+            fieldActions.appendChild(deleteButton)
+            fieldActions.appendChild(editButton)
+        
+            fieldInformations.appendChild(contactName)
+            fieldInformations.appendChild(contactNumber)
+        
+            newContact.appendChild(perfilImage)
+            newContact.appendChild(fieldInformations)
+            
+            contactContainer.appendChild(newContact)
+            contactContainer.appendChild(fieldActions)
+    
+            localStorage.setItem(`contact-${number}`, contactContainer.outerHTML)
+    
+            fieldContacts.appendChild(contactContainer)
+    
+            location.reload()
+    
+        } else {
+            alert('Este número ja existe')
+        }
+    }
+}
 
 const fieldChat = () => {
     alert('OK')
@@ -86,8 +106,8 @@ const deleteContact = (idNumber) => {
     location.reload()
 }
 
-const editContact = () => {
-    alert('edit')
+const editContact = (idNumber) => {
+    console.log(idNumber)
 }
 
 for(let contact of contacts) {
@@ -99,5 +119,5 @@ for(let action of actionDelete) {
 }
 
 for(let action of actionEdit) {
-    action.addEventListener('click', editContact)
+    action.addEventListener('click', () => editContact(action.parentElement.parentElement.id))
 }

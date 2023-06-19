@@ -11,25 +11,40 @@
 </head>
 <body>
     <main>
-        <div class="chats">
-            <div class="navbar">
-                <h2>Conversas</h2>
-                <button class="btn-add" id="addButton">+</button>
+        <section class="containerChat">
+            <div class="chats">
+                <div class="navbar">
+                    <h2>Conversas</h2>
+                    <button class="btn-add" id="addButton">+</button>
+                </div>
+                <div id="fieldContacts"></div>
             </div>
-            <div id="fieldContacts"></div>
-        </div>
-        <!-- <div class="field-chat">
-            <div class="contact-bar">
-                <img src="assets/images/user-man.png" alt="profile image" class="perfil-image">
-                <h3 class="contact-name">Gerson</h3>
+            <!-- <div class="field-chat">
+                <div class="contact-bar">
+                    <img src="assets/images/user-man.png" alt="profile image" class="perfil-image">
+                    <h3 class="contact-name">Gerson</h3>
+                </div>
+                <div class="field-typing">
+                    <input type="text" name="fieldTyping" id="fieldTyping" placeholder="Mensagem...">
+                    <button class="btn-send">
+                        <img src="assets/images/send-icon.png" alt="Icon send">
+                    </button>
+                </div>
+            </div> -->
+        </section>
+        <section class="containerData" id="dataContainer">
+            <div class="containerForm">
+                <label for="formName">
+                    <input type="text" id="formName" name="formName" placeholder="Name" />
+                </label>
+
+                <label for="formNumber">
+                    <input type="tel" id="formNumber" name="formNumber" placeholder="Number" />
+                </label>
+
+                <button class="btn-save" id="saveButton">Save Contact</button>
             </div>
-            <div class="field-typing">
-                <input type="text" name="fieldTyping" id="fieldTyping" placeholder="Mensagem...">
-                <button class="btn-send">
-                    <img src="assets/images/send-icon.png" alt="Icon send">
-                </button>
-            </div>
-        </div> -->
+        </section>
     </main>
     <script src="script.js"></script>
 </body>
