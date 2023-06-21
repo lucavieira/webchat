@@ -1,5 +1,6 @@
 let addButton = document.getElementById("addButton")
 let fieldContacts = document.getElementById("fieldContacts")
+let containerChat = document.getElementById("container-chat")
 let contacts = document.getElementsByClassName('contact')
 let actionDelete = document.getElementsByClassName('delete')
 let actionEdit = document.getElementsByClassName('edit')
@@ -100,8 +101,56 @@ function saveContact(name, number, edit=false) {
     }
 }
 
-const fieldChat = () => {
-    alert('OK')
+const showFieldChat = (idNumber) => {
+    let contactSelect = document.querySelector(`#${idNumber}`)
+    let imagePerfil = contactSelect.children[0].children[0].src
+    let perfilName = contactSelect.children[0].children[1].children[0].textContent
+
+    let fieldChat = document.createElement('div')
+    fieldChat.classList.add('field-chat')
+
+    let contactBar = document.createElement('div')
+    contactBar.classList.add('contact-bar')
+
+    let contactImage = document.createElement('img')
+    contactImage.classList.add('perfil-image')
+    contactImage.src = imagePerfil
+
+    let contactName = document.createElement('h3')
+    contactName.classList.add('contact-name')
+    contactName.innerHTML = perfilName
+
+    let fiedlTyping = document.createElement('div')
+    fiedlTyping.classList.add('field-typing')
+
+    let inputTyping = document.createElement('input')
+    inputTyping.type = 'text'
+    inputTyping.id = 'fieldTyping'
+    inputTyping.placeholder = 'Mensagem...'
+
+    let sendButton = document.createElement('button')
+    sendButton.classList.add('btn-send')
+
+    let sendIcon = document.createElement('img')
+    sendIcon.src = "assets/images/send-icon.png"
+
+    sendButton.appendChild(sendIcon)
+
+    fiedlTyping.appendChild(inputTyping)
+    fiedlTyping.appendChild(sendButton)
+
+    contactBar.appendChild(contactImage)
+    contactBar.appendChild(contactName)
+
+    fieldChat.appendChild(contactBar)
+    fieldChat.appendChild(fiedlTyping)
+
+    console.log(containerChat.children)
+    if(containerChat.children.length > 1) {
+        containerChat.removeChild(containerChat.children[1])
+    }
+
+    containerChat.appendChild(fieldChat)
 }
 
 const deleteContact = (idNumber) => {
@@ -127,7 +176,7 @@ const editContact = (idNumber) => {
 }
 
 for(let contact of contacts) {
-    contact.addEventListener('click', fieldChat)
+    contact.addEventListener('click', () => showFieldChat(contact.parentElement.id))
 }
 
 for(let action of actionDelete) {
