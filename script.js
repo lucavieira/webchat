@@ -46,7 +46,7 @@ function saveContact(name, number, edit=false) {
     let erros = 0
 
     if(number.length < 11 || number.length > 11 || isNaN(number)) {
-        alert('Número Inválido')
+        alert('Número Inválido, é necessário que o número contenha 11 dígitos! Ex: 85912345678')
         erros++
     }
 
