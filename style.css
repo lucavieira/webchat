@@ -294,6 +294,32 @@ main .field-chat .field-typing .btn-send {
     cursor: pointer;
 }
 
+main .field-message {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+    gap: 5px;
+    padding: 10px;
+}
+
+main .message {
+    padding: 7px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #fff;
+    background-color: #293080;
+
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
 @media (max-width: 500px) {
     main .containerChat .chats {
         width: 100%;

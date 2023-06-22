@@ -134,6 +134,10 @@ const showFieldChat = (idNumber) => {
     contactName.classList.add('contact-name')
     contactName.innerHTML = perfilName
 
+    let fieldMessage = document.createElement('div')
+    fieldMessage.classList.add('field-message')
+    fieldMessage.id = 'fieldMessages'
+
     let fiedlTyping = document.createElement('div')
     fiedlTyping.classList.add('field-typing')
 
@@ -150,6 +154,17 @@ const showFieldChat = (idNumber) => {
 
     sendButton.appendChild(sendIcon)
 
+    sendButton.addEventListener('click', () => {
+        let message = document.createElement('span')
+        message.classList.add('message')
+        message.innerHTML = inputTyping.value
+        inputTyping.value = ''
+
+        let fieldMessages = document.getElementById('fieldMessages')
+
+        fieldMessages.appendChild(message)
+    })
+
     fiedlTyping.appendChild(inputTyping)
     fiedlTyping.appendChild(sendButton)
 
@@ -158,6 +173,7 @@ const showFieldChat = (idNumber) => {
     contactBar.appendChild(backButton)
 
     fieldChat.appendChild(contactBar)
+    fieldChat.appendChild(fieldMessage)
     fieldChat.appendChild(fiedlTyping)
 
     if(containerChat.children.length > 1) {
