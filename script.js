@@ -11,6 +11,15 @@ let saveButton = document.getElementById('saveButton')
 let closeButton = document.querySelector('#closeButton')
 let fieldChats = document.querySelector('#fieldChats')
 
+let backButton = document.createElement('div')
+backButton.classList.add('back-button')
+backButton.id = 'backButton'
+
+backButton.addEventListener('click', () => {
+    containerChat.children[0].style.display = 'flex'
+    containerChat.children[1].style.display = 'none'
+})
+
 for(let index = 0; index <= localStorage.length; index++) {
     let key = localStorage.key(index)
     if(key != null) {
@@ -106,6 +115,7 @@ const showFieldChat = (idNumber) => {
     if (window.matchMedia("(max-width:500px)").matches) {
         fieldChats.style.display = 'none'
     }
+
     let contactSelect = document.querySelector(`#${idNumber}`)
     let imagePerfil = contactSelect.children[0].children[0].src
     let perfilName = contactSelect.children[0].children[1].children[0].textContent
@@ -145,11 +155,11 @@ const showFieldChat = (idNumber) => {
 
     contactBar.appendChild(contactImage)
     contactBar.appendChild(contactName)
+    contactBar.appendChild(backButton)
 
     fieldChat.appendChild(contactBar)
     fieldChat.appendChild(fiedlTyping)
 
-    console.log(containerChat.children)
     if(containerChat.children.length > 1) {
         containerChat.removeChild(containerChat.children[1])
     }

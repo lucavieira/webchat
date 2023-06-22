@@ -196,6 +196,7 @@ main .perfil-image {
 main .contact-name {
     font-size: 16px;
     color: #fff;
+    flex-grow: 3;
 }
 
 main .contact-number {
@@ -301,5 +302,12 @@ main .field-chat .field-typing .btn-send {
 
     main .field-chat {
         width: 100%;
+    }
+
+    .back-button {
+        width: 30px;
+        height: 30px;
+
+        background: no-repeat center / contain url("./assets/images/back-icon.png");
     }
 }
