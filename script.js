@@ -9,6 +9,7 @@ let inputName = document.querySelector("#formName")
 let inputNumber = document.getElementById('formNumber')
 let saveButton = document.getElementById('saveButton')
 let closeButton = document.querySelector('#closeButton')
+let fieldChats = document.querySelector('#fieldChats')
 
 for(let index = 0; index <= localStorage.length; index++) {
     let key = localStorage.key(index)
@@ -102,6 +103,9 @@ function saveContact(name, number, edit=false) {
 }
 
 const showFieldChat = (idNumber) => {
+    if (window.matchMedia("(max-width:500px)").matches) {
+        fieldChats.style.display = 'none'
+    }
     let contactSelect = document.querySelector(`#${idNumber}`)
     let imagePerfil = contactSelect.children[0].children[0].src
     let perfilName = contactSelect.children[0].children[1].children[0].textContent
