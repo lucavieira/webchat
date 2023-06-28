@@ -170,6 +170,8 @@ main .chats .navbar .btn-add {
     font-weight: bold;
     font-size: 20px;
 
+    font-family: 'Courier New', Courier, monospace;
+
     background-color: #293080;
     color: white;
 
