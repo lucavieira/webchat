@@ -124,11 +124,13 @@ main #fieldContacts {
     overflow-y: scroll;
 }
 
-main #fieldContacts::-webkit-scrollbar {
+main #fieldContacts::-webkit-scrollbar,
+main .field-message::-webkit-scrollbar {
     width: 6px;
 }
 
-main #fieldContacts::-webkit-scrollbar-thumb {
+main #fieldContacts::-webkit-scrollbar-thumb,
+main .field-message::-webkit-scrollbar-thumb {
     border-radius: 50px;
 
     background-color: #151515;
@@ -309,12 +311,14 @@ main .field-chat .field-typing .btn-send {
 main .field-message {
     width: 100%;
     height: 100%;
+
     display: flex;
     flex-direction: column;
-    justify-content: end;
     align-items: end;
     gap: 5px;
     padding: 10px;
+
+    overflow-y: scroll;
 }
 
 main .message {
