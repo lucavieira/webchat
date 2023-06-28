@@ -119,7 +119,19 @@ main .containerChat .chats {
 }
 
 main #fieldContacts {
+    width: 100%;
     height: 100%;
+    overflow-y: scroll;
+}
+
+main #fieldContacts::-webkit-scrollbar {
+    width: 6px;
+}
+
+main #fieldContacts::-webkit-scrollbar-thumb {
+    border-radius: 50px;
+
+    background-color: #151515;
 }
 
 main .containerContact {
