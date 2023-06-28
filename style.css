@@ -2,6 +2,8 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+
+    font-family: 'Belanosima', sans-serif;
 }
 
 body {
@@ -138,7 +140,6 @@ main .field-message::-webkit-scrollbar-thumb {
 
 main .containerContact {
     width: 90%;
-    /* height: 100%; */
 
     display: flex;
     align-items: center;
@@ -163,7 +164,7 @@ main .chats .navbar .btn-add {
     width: 30px;
     height: 30px;
 
-    border: 1px solid black;
+    border: none;
     border-radius: 50px;
 
     font-weight: bold;
@@ -351,5 +352,9 @@ main .message {
         height: 30px;
 
         background: no-repeat center / contain url("./assets/images/back-icon.png");
+    }
+
+    main .containerData .containerForm {
+        width: 90%;
     }
 }
